@@ -1,0 +1,23 @@
+kind: pipeline
+type: docker
+name: demo
+
+workspace:
+  base: /go
+  path: .
+
+steps:
+- name: test
+  image: golang:latest
+  commands:
+    # 语法检查
+    - go vet
+    # 单元测试
+    - go test -v -cover
+- name: build
+  image: golang:latest
+  commands:
+    # 编译成一个可执行的文件
+    - go build main.go
+    # 执行Go程序
+    - ./main
