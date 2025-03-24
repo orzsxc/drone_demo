@@ -14,6 +14,8 @@ steps:
     - go vet
     # 单元测试
     - go test -v -cover
+  environment:
+    - GO111MODULE=off
 - name: build
   image: golang:latest
   commands:
